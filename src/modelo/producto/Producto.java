@@ -109,7 +109,7 @@ public class Producto {
         return perecederos.getFechaVencimiento();
     }
 
-    public void setRefrigerados(String codigoAprobacion, short temperaturaRecomendada){
+    public void setRefrigerados(String codigoAprobacion, float temperaturaRecomendada){
         refrigerados.setCodigoAprobacion(codigoAprobacion);
         refrigerados.setTemperaturaRecomendada(temperaturaRecomendada);
     }
@@ -126,7 +126,7 @@ public class Producto {
         return String.valueOf(refrigerados.getTemperaturaRecomendada());
     }
     
-    public void setRefrigeradosTemperatura(short temperaturaRecomendada){
+    public void setRefrigeradosTemperatura(float temperaturaRecomendada){
         refrigerados.setTemperaturaRecomendada(temperaturaRecomendada);
     }
 }

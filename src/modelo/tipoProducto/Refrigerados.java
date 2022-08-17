@@ -2,7 +2,7 @@ package modelo.tipoProducto;
 
 public class Refrigerados {
     private String codigoAprobacion;
-    private short temperaturaRecomendada;
+    private float temperaturaRecomendada;
 
     public Refrigerados() {
     }
@@ -15,11 +15,11 @@ public class Refrigerados {
         this.codigoAprobacion = codigoAprobacion;
     }
 
-    public short getTemperaturaRecomendada() {
+    public float getTemperaturaRecomendada() {
         return this.temperaturaRecomendada;
     }
 
-    public void setTemperaturaRecomendada(short temperaturaRecomendada) {
+    public void setTemperaturaRecomendada(float temperaturaRecomendada) {
         this.temperaturaRecomendada = temperaturaRecomendada;
     }
 

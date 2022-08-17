@@ -38,7 +38,7 @@ public class CrudProductoController {
                 producto.setPerecederos(nuevoProducto[6]);
             }else{
                 if(nuevoProducto[5] == "Refrigerados"){
-                    producto.setRefrigerados(nuevoProducto[7], Short.valueOf(nuevoProducto[8]));
+                    producto.setRefrigerados(nuevoProducto[7], Float.valueOf(nuevoProducto[8]));
                 }else{
                     if(nuevoProducto[5] == "Envasados"){
                         producto.setEnvasado(nuevoProducto[9], Float.valueOf(nuevoProducto[10]), nuevoProducto[11]);
@@ -133,7 +133,7 @@ public class CrudProductoController {
             producto.setTipoProducto(scanner.next());
             producto.setPerecederos(scanner.next());
             producto.setRefrigeradosCodigo(scanner.next());
-            producto.setRefrigeradosTemperatura(Short.valueOf(scanner.next()));
+            producto.setRefrigeradosTemperatura(Float.valueOf(scanner.next()));
             producto.setEnvasadoFecha(scanner.next());
             producto.setEnvasadoPeso(Float.valueOf(scanner.next()));
             producto.setEnvasadoPais(scanner.next());
@@ -185,7 +185,7 @@ public class CrudProductoController {
                listaProducto.set(indexProducto, producto);
            break;
            case 9:
-               producto.setRefrigeradosTemperatura(Short.valueOf(valor));
+               producto.setRefrigeradosTemperatura(Float.valueOf(valor));
                listaProducto.set(indexProducto, producto);
            break;
            case 10:

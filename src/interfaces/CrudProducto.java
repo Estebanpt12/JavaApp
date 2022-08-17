@@ -47,22 +47,16 @@ public class CrudProducto extends javax.swing.JFrame {
 
     public void translateTable(String[][] info){
         for(int i = 0; i<info.length;i++){
-            if(info[i][6].equals("null")){
+            if(!(info[i][5].equals("Perecederos"))){
                info[i][6] = null;
             }
-            if(info[i][7].equals("null")){
+            if(!(info[i][5].equals("Refrigerados"))){
                info[i][7] = null;
-            }
-            if(info[i][8].equals("0")){
                info[i][8] = null;
             }
-            if(info[i][9].equals("null")){
+            if(!(info[i][5].equals("Envasados"))){
                info[i][9] = null;
-            }
-            if(info[i][10].equals("0.0")){
                info[i][10] = null;
-            }
-            if(info[i][11].equals("null")){
                info[i][11] = null;
             }
         }
