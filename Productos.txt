@@ -1,0 +1,2 @@
+1123,Arroz,Arroz blanco largo,2500,24,Perecederos,2023-03-01,null,0,null,0.0,null
+1258,wasd,wad,2000,20,Envasados,null,null,0,2022-01-01,3.6,Argentina

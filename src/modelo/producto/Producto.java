@@ -18,6 +18,9 @@ public class Producto {
     private Refrigerados refrigerados;
 
     public Producto() {
+        perecederos = new Perecederos();
+        envasados = new Envasados();
+        refrigerados = new Refrigerados();
     }
 
     public String getCodigo() {
@@ -68,7 +71,7 @@ public class Producto {
         this.tipoProducto = tipoProducto;
     }
 
-    public void setEnvasado(String fechaEnvasado,short pesoEnvase, String paisEnvase){
+    public void setEnvasado(String fechaEnvasado,float pesoEnvase, String paisEnvase){
         envasados.setFechaEnvasado(fechaEnvasado);
         envasados.setPaisEnvase(paisEnvase);
         envasados.setPesoEnvase(pesoEnvase);
@@ -82,7 +85,7 @@ public class Producto {
         return envasados.getFechaEnvasado();
     }
     
-    public void setEnvasadoPeso(short pesoEnvase){
+    public void setEnvasadoPeso(float pesoEnvase){
         envasados.setPesoEnvase(pesoEnvase);
     }
     

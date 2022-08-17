@@ -96,7 +96,6 @@ public class InterfazBase extends javax.swing.JFrame {
         this.dispose();
         CrudProducto crudProducto = new CrudProducto();
         crudProducto.setVisible(true);
-        crudProducto.init();
     }//GEN-LAST:event_botonProductosActionPerformed
 
     private void botonClientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonClientesActionPerformed

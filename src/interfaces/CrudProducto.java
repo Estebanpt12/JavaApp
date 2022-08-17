@@ -20,6 +20,7 @@ public class CrudProducto extends javax.swing.JFrame {
      */
     public CrudProducto() {
         initComponents();
+        crudProductoController = new CrudProductoController();
         modelo = new DefaultTableModel();
         modelo.addColumn("Codigo");
         modelo.addColumn("Nombre");
@@ -34,8 +35,42 @@ public class CrudProducto extends javax.swing.JFrame {
         modelo.addColumn("Peso");
         modelo.addColumn("Pais");
         this.tabla.setModel(modelo);
+        labelDato1.setText("");
+        textDato1.setEnabled(false);
+        labelDato2.setText("");
+        textDato2.setEnabled(false);
+        labelPais.setText("");
+        dropDownPais.setEnabled(false);
+        String [][] string = crudProductoController.readListaProducto();
+        translateTable(string);
     }
 
+    public void translateTable(String[][] info){
+        for(int i = 0; i<info.length;i++){
+            if(info[i][6].equals("null")){
+               info[i][6] = null;
+            }
+            if(info[i][7].equals("null")){
+               info[i][7] = null;
+            }
+            if(info[i][8].equals("0")){
+               info[i][8] = null;
+            }
+            if(info[i][9].equals("null")){
+               info[i][9] = null;
+            }
+            if(info[i][10].equals("0.0")){
+               info[i][10] = null;
+            }
+            if(info[i][11].equals("null")){
+               info[i][11] = null;
+            }
+        }
+        for(int i = 0; i<info.length; i++){
+            modelo.addRow(info[i]);
+        }
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -330,21 +365,12 @@ public class CrudProducto extends javax.swing.JFrame {
             modelo.removeRow(fila);
             crudProductoController.deleteProducto(fila);
         }
+        crudProductoController.writeListaProducto();
     }//GEN-LAST:event_botonBorrarActionPerformed
 
     private void dropDownPaisActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dropDownPaisActionPerformed
-        int aux = dropDownPais.getSelectedIndex();
         
     }//GEN-LAST:event_dropDownPaisActionPerformed
-
-    public void init(){
-        labelDato1.setText("");
-        textDato1.setEnabled(false);
-        labelDato2.setText("");
-        textDato2.setEnabled(false);
-        labelPais.setText("");
-        dropDownPais.setEnabled(false);
-    }
     
     private boolean verifyEmpty(){
         return !(textCodigo.getText().equals("") && textNombre.getText().equals("") && textDescripcion.getText().equals("") 
@@ -373,7 +399,6 @@ public class CrudProducto extends javax.swing.JFrame {
                 textDato1.setText("");
                 labelDato1.setText("");
                 textDato1.setEnabled(false);
-                System.out.println(info[10]);
             }else{
                 if(aux == "Refrigerados"){
                     info[7] = textDato1.getText();
@@ -411,8 +436,6 @@ public class CrudProducto extends javax.swing.JFrame {
             dropDownTipo.setSelectedIndex(0);
             crudProductoController.addProducto(info);
             crudProductoController.writeListaProducto();
-        }else{
-            
         }
     }//GEN-LAST:event_botonAgregarActionPerformed
 
@@ -436,7 +459,7 @@ public class CrudProducto extends javax.swing.JFrame {
             }else{
                 if(aux == "Envasados"){
                     labelDato1.setText("Fecha:");
-                    labelDato2.setText("Codigo:");
+                    labelDato2.setText("Peso:");
                     textDato1.setEnabled(true);
                     textDato2.setEnabled(true);
                     labelPais.setText("Pais: ");
@@ -457,6 +480,8 @@ public class CrudProducto extends javax.swing.JFrame {
             int columna = dropDownCampo.getSelectedIndex();
             String valor = textValorEditar.getText();
             modelo.setValueAt(valor, fila-1, columna-1);
+            crudProductoController.editProducto(fila-1, columna, valor);
+            crudProductoController.writeListaProducto();
         }
     }//GEN-LAST:event_botonEditarActionPerformed
 

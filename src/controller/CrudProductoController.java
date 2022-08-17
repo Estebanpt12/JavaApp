@@ -10,7 +10,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
-import java.util.Iterator;
+import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import modelo.producto.Producto;
@@ -34,9 +34,17 @@ public class CrudProductoController {
         producto.setValorUnitario(Integer.parseInt(nuevoProducto[3]));
         producto.setCantidadExistencia(Integer.parseInt(nuevoProducto[4]));
         producto.setTipoProducto(nuevoProducto[5]);
-        producto.setPerecederos(nuevoProducto[6]);
-        producto.setRefrigerados(nuevoProducto[7], Short.valueOf(nuevoProducto[8]));
-        producto.setEnvasado(nuevoProducto[9], Short.valueOf(nuevoProducto[10]), nuevoProducto[11]);
+        if(nuevoProducto[5] == "Perecederos"){
+                producto.setPerecederos(nuevoProducto[6]);
+            }else{
+                if(nuevoProducto[5] == "Refrigerados"){
+                    producto.setRefrigerados(nuevoProducto[7], Short.valueOf(nuevoProducto[8]));
+                }else{
+                    if(nuevoProducto[5] == "Envasados"){
+                        producto.setEnvasado(nuevoProducto[9], Float.valueOf(nuevoProducto[10]), nuevoProducto[11]);
+                    }
+                }
+            }
         listaProducto.add(producto);
     }
     
@@ -63,12 +71,75 @@ public class CrudProductoController {
                                     listaProducto.get(i).getCantidadExistencia()+","+listaProducto.get(i).getTipoProducto()+","+
                                     listaProducto.get(i).getPerecederos()+","+listaProducto.get(i).getRefrigeradosCodigo()+","+
                                     listaProducto.get(i).getRefrigeradosTemperatura()+","+listaProducto.get(i).getEnvasadoFecha()+","+
-                                    listaProducto.get(i).getEnvasadoPeso()+","+listaProducto.get(i).getEnvasadoPais()+",");
-            printWriter.close();
+                                    listaProducto.get(i).getEnvasadoPeso()+","+listaProducto.get(i).getEnvasadoPais());
             }
+            printWriter.close();
         } catch (IOException ex) {
             Logger.getLogger(CrudProductoController.class.getName()).log(Level.SEVERE, null, ex);
         }
+    }
+    
+    public void restarProducto(String codigo, int cantidad){
+        readListaProducto();
+        for(int i = 0; i<listaProducto.size(); i++){
+            if(listaProducto.get(i).getCodigo().equals(codigo)){
+                listaProducto.get(i).setCantidadExistencia(listaProducto.get(i).getCantidadExistencia() - cantidad);
+            }
+        }
+    }
+    
+    public String[][] readListaProducto(){
+        File file = new File("Productos.txt");
+        Scanner scanner = null;
+        try{
+            scanner = new Scanner(file);
+            while(scanner.hasNextLine()){
+             String string = scanner.nextLine();
+             parseLine(string);
+            }
+        }catch(IOException exp){
+            exp.printStackTrace();
+        }
+        scanner.close();
+        String[][] string1 = new String[listaProducto.size()][12];
+        for(int i = 0; i < listaProducto.size(); i++){
+            string1[i][0] = listaProducto.get(i).getCodigo();
+            string1[i][1] = listaProducto.get(i).getNombre();
+            string1[i][2] = listaProducto.get(i).getDescripcion();
+            string1[i][3] = String.valueOf(listaProducto.get(i).getValorUnitario());
+            string1[i][4] = String.valueOf(listaProducto.get(i).getCantidadExistencia());
+            string1[i][5] = listaProducto.get(i).getTipoProducto();
+            string1[i][6] = listaProducto.get(i).getPerecederos();
+            string1[i][7] = listaProducto.get(i).getRefrigeradosCodigo();
+            string1[i][8] = listaProducto.get(i).getRefrigeradosTemperatura();
+            string1[i][9] = listaProducto.get(i).getEnvasadoFecha();
+            string1[i][10] = listaProducto.get(i).getEnvasadoPeso();
+            string1[i][11] = listaProducto.get(i).getEnvasadoPais();
+        }
+        return string1;
+    }
+    
+    private void parseLine(String line){
+        Producto producto = new Producto();
+        Scanner scanner = new Scanner(line);
+        scanner.useDelimiter(",");
+        
+        while(scanner.hasNext()){
+            producto.setCodigo(scanner.next());
+            producto.setNombre(scanner.next());
+            producto.setDescripcion(scanner.next());
+            producto.setValorUnitario(Integer.parseInt(scanner.next()));
+            producto.setCantidadExistencia(Integer.parseInt(scanner.next()));
+            producto.setTipoProducto(scanner.next());
+            producto.setPerecederos(scanner.next());
+            producto.setRefrigeradosCodigo(scanner.next());
+            producto.setRefrigeradosTemperatura(Short.valueOf(scanner.next()));
+            producto.setEnvasadoFecha(scanner.next());
+            producto.setEnvasadoPeso(Float.valueOf(scanner.next()));
+            producto.setEnvasadoPais(scanner.next());
+        }
+        listaProducto.add(producto);
+        scanner.close();
     }
     
     /*public String getRow(int index){
@@ -122,7 +193,7 @@ public class CrudProductoController {
                listaProducto.set(indexProducto, producto);
            break;
            case 11:
-               producto.setEnvasadoPeso(Short.valueOf(valor));
+               producto.setEnvasadoPeso(Float.valueOf(valor));
                listaProducto.set(indexProducto, producto);
            break;
            case 12:

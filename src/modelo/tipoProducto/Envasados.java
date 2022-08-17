@@ -3,7 +3,7 @@ package modelo.tipoProducto;
 
 public class Envasados {
     private String fechaEnvasado;
-    private short pesoEnvase;
+    private float pesoEnvase;
     private String paisEnvase;
 
     public Envasados() {
@@ -17,11 +17,11 @@ public class Envasados {
         this.fechaEnvasado = fechaEnvasado;
     }
 
-    public short getPesoEnvase() {
+    public float getPesoEnvase() {
         return this.pesoEnvase;
     }
 
-    public void setPesoEnvase(short pesoEnvase) {
+    public void setPesoEnvase(float pesoEnvase) {
         this.pesoEnvase = pesoEnvase;
     }
 
