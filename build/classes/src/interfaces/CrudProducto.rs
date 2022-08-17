@@ -1,0 +1,9 @@
+interfaces.CrudProducto
+interfaces.CrudProducto$1
+interfaces.CrudProducto$5
+interfaces.CrudProducto$4
+interfaces.CrudProducto$3
+interfaces.CrudProducto$2
+interfaces.CrudProducto$8
+interfaces.CrudProducto$7
+interfaces.CrudProducto$6

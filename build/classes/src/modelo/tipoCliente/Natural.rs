@@ -1,0 +1,1 @@
+modelo.tipoCliente.Natural
