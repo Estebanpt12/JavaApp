@@ -477,6 +477,27 @@ public class CrudProducto extends javax.swing.JFrame {
                 modelo.setValueAt(valor, fila-1, columna-1);
                 crudProductoController.editProducto(fila-1, columna, valor);
                 crudProductoController.writeListaProducto();
+                if (!(valor.equals("Perecederos"))){
+                    modelo.setValueAt(null, fila-1, 6);
+                    crudProductoController.editProducto(fila-1, 7, null);
+                    crudProductoController.writeListaProducto();
+                }
+                if(!(valor.equals("Refrigerados"))){
+                    modelo.setValueAt(null, fila-1, 7);
+                    modelo.setValueAt(null, fila-1, 8);
+                    crudProductoController.editProducto(fila-1, 8, null);
+                    crudProductoController.editProducto(fila-1, 9, "0");
+                    crudProductoController.writeListaProducto();
+                }
+                if(!(valor.equals("Envasados"))){
+                    modelo.setValueAt(null, fila-1, 9);
+                    modelo.setValueAt(null, fila-1, 10);
+                    modelo.setValueAt(null, fila-1, 11);
+                    crudProductoController.editProducto(fila-1, 10, null);
+                    crudProductoController.editProducto(fila-1, 11, "0");
+                    crudProductoController.editProducto(fila-1, 12, null);                        
+                    crudProductoController.writeListaProducto();
+                }
             }else{
                 if(columna == 7 && modelo.getValueAt(fila-1, 5).equals("Perecederos")){
                     modelo.setValueAt(valor, fila-1, columna-1);
@@ -508,8 +529,7 @@ public class CrudProducto extends javax.swing.JFrame {
                     }
                 }
             }
-            
-        }
+        }    
     }//GEN-LAST:event_botonEditarActionPerformed
 
     /**
