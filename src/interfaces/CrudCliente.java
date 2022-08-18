@@ -77,6 +77,11 @@ public class CrudCliente extends javax.swing.JFrame {
         });
 
         dropDownCodigo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccionar", "Nombre", "Apellido", "Identificacion", "Direccion", "Telefono", "Tipo", "Email", "Fecha nacimiento", "NIT", "Identificacion tributaria" }));
+        dropDownCodigo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                dropDownCodigoActionPerformed(evt);
+            }
+        });
 
         labelNombre.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         labelNombre.setText("Nombre:");
@@ -140,6 +145,11 @@ public class CrudCliente extends javax.swing.JFrame {
         });
 
         dropDownTipo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccionar", "Natural", "Juridica" }));
+        dropDownTipo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                dropDownTipoActionPerformed(evt);
+            }
+        });
 
         labelApellido.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         labelApellido.setText("Apellido:");
@@ -305,6 +315,14 @@ public class CrudCliente extends javax.swing.JFrame {
     private void botonAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAgregarActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_botonAgregarActionPerformed
+
+    private void dropDownTipoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dropDownTipoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_dropDownTipoActionPerformed
+
+    private void dropDownCodigoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dropDownCodigoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_dropDownCodigoActionPerformed
 
     /**
      * @param args the command line arguments
