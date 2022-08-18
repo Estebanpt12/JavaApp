@@ -473,9 +473,42 @@ public class CrudProducto extends javax.swing.JFrame {
             int fila = Integer.parseInt(textFilaEliminacion.getText());
             int columna = dropDownCampo.getSelectedIndex();
             String valor = textValorEditar.getText();
-            modelo.setValueAt(valor, fila-1, columna-1);
-            crudProductoController.editProducto(fila-1, columna, valor);
-            crudProductoController.writeListaProducto();
+            if(columna == 6 && ( valor.equals("Perecederos") || valor.equals("Refrigerados") || valor.equals("Envasados"))){
+                modelo.setValueAt(valor, fila-1, columna-1);
+                crudProductoController.editProducto(fila-1, columna, valor);
+                crudProductoController.writeListaProducto();
+            }else{
+                if(columna == 7 && modelo.getValueAt(fila-1, 5).equals("Perecederos")){
+                    modelo.setValueAt(valor, fila-1, columna-1);
+                    crudProductoController.editProducto(fila-1, columna, valor);
+                    crudProductoController.writeListaProducto();
+                }else{
+                    if((columna == 8 || columna == 9) && modelo.getValueAt(fila-1, 5).equals("Refrigerados")){
+                        modelo.setValueAt(valor, fila-1, columna-1);
+                        crudProductoController.editProducto(fila-1, columna, valor);
+                        crudProductoController.writeListaProducto();
+                    }else{
+                        if((columna == 10 || columna == 11) && modelo.getValueAt(fila-1, 5).equals("Envasados")){
+                            modelo.setValueAt(valor, fila-1, columna-1);
+                            crudProductoController.editProducto(fila-1, columna, valor);
+                            crudProductoController.writeListaProducto();
+                        }else{
+                            if(columna == 12 && modelo.getValueAt(fila-1, 5).equals("Envasados") && (valor.equals("Colombia") || valor.equals("Ecuador") || valor.equals("Chile") || valor.equals("Argentina") || valor.equals("Peru"))){
+                                modelo.setValueAt(valor, fila-1, columna-1);
+                                crudProductoController.editProducto(fila-1, columna, valor);
+                                crudProductoController.writeListaProducto();
+                            }else{
+                                if(columna>0 && columna<6){
+                                    modelo.setValueAt(valor, fila-1, columna-1);
+                                    crudProductoController.editProducto(fila-1, columna, valor);
+                                    crudProductoController.writeListaProducto();
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            
         }
     }//GEN-LAST:event_botonEditarActionPerformed
 
