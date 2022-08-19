@@ -4,17 +4,22 @@
  */
 package interfaces;
 
+import controller.TransaccionVentaController;
+
 /**
  *
  * @author Esteban
  */
 public class TransaccionVenta extends javax.swing.JFrame {
 
+    TransaccionVentaController transaccionVentaController;
     /**
      * Creates new form TransaccionVenta
      */
     public TransaccionVenta() {
         initComponents();
+        transaccionVentaController = new TransaccionVentaController();
+        transaccionVentaController.readlistaTransacciones();
     }
 
     /**
@@ -72,8 +77,18 @@ public class TransaccionVenta extends javax.swing.JFrame {
         jLabel8.setText("Producto:");
 
         botonAceptar.setText("Aceptar");
+        botonAceptar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonAceptarActionPerformed(evt);
+            }
+        });
 
         botonCancelar.setText("Cancelar");
+        botonCancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonCancelarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -152,6 +167,43 @@ public class TransaccionVenta extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private boolean validateData(){
+        return ( ! (textCantidad.getText().equals("") && textCliente.getText().equals("") &&
+                    textCodigo.getText().equals("") && textFecha.getText().equals("") &&
+                    textIva.getText().equals("") && textProducto.getText().equals("") &&
+                    textSubtotal.getText().equals("") && textTotal.getText().equals("")) );
+    }
+
+    private void botonAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAceptarActionPerformed
+        if(validateData()){
+            String[] info = new String[8];
+            info[0] = textCantidad.getText();
+            info[1] = textCliente.getText();
+            info[2] = textCodigo.getText();
+            info[3] = textFecha.getText();
+            info[4] = textIva.getText();
+            info[5] = textProducto.getText();
+            info[6] = textSubtotal.getText();
+            info[7] = textTotal.getText();
+            transaccionVentaController.addTransaccion(info);
+            transaccionVentaController.writelistaTransacciones();
+            textCantidad.setText("");
+            textCliente.setText("");
+            textCodigo.setText("");
+            textFecha.setText("");
+            textIva.setText("");
+            textProducto.setText("");
+            textSubtotal.setText("");
+            textTotal.setText("");
+        }
+    }//GEN-LAST:event_botonAceptarActionPerformed
+
+    private void botonCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonCancelarActionPerformed
+        this.dispose();
+        InterfazBase interfazBase = new InterfazBase();
+        interfazBase.setVisible(true);
+    }//GEN-LAST:event_botonCancelarActionPerformed
 
     /**
      * @param args the command line arguments

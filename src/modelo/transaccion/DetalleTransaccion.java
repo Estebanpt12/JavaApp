@@ -5,7 +5,8 @@ public class DetalleTransaccion {
     private int subTotal;
     private String codigoProducto;
 
-    public DetalleTransaccion(){}
+    public DetalleTransaccion(){
+    }
 
 
     public short getCantidadProductos() {

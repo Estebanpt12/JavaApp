@@ -103,7 +103,9 @@ public class InterfazBase extends javax.swing.JFrame {
     }//GEN-LAST:event_botonClientesActionPerformed
 
     private void botonVentasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonVentasActionPerformed
-        // TODO add your handling code here:
+        this.dispose();
+        TransaccionVenta transaccionVenta = new TransaccionVenta();
+        transaccionVenta.setVisible(true);
     }//GEN-LAST:event_botonVentasActionPerformed
 
     /**

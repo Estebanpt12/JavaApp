@@ -86,6 +86,7 @@ public class CrudProductoController {
                 listaProducto.get(i).setCantidadExistencia(listaProducto.get(i).getCantidadExistencia() - cantidad);
             }
         }
+        writeListaProducto();
     }
     
     public String[][] readListaProducto(){

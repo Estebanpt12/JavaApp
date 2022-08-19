@@ -1,16 +1,47 @@
 package modelo.transaccion;
 
-import java.util.Date;
-
 public class Transaccion {
     private String codigo;
-    private Date fecha;
+    private String fecha;
     private String cliente;
     private int total;
-    private short iva;
+    private float iva;
     private DetalleTransaccion detalleTransaccion;
 
     public Transaccion() {
+        detalleTransaccion = new DetalleTransaccion();
+    }
+    
+    public String getTotalString(){
+        return String.valueOf(total);
+    }
+
+    public String getDetalleCantidad(){
+        return String.valueOf(detalleTransaccion.getCantidadProductos());
+    }
+
+    public String getDetalleSubtotal(){
+        return String.valueOf(detalleTransaccion.getSubTotal());
+    }
+
+    public String getDetalleCodigo(){
+        return detalleTransaccion.getCodigoProducto();
+    }
+
+    public String getIvaString(){
+        return String.valueOf(iva);
+    }
+
+    public void setDetalleCantidad(short cantidad){
+        detalleTransaccion.setCantidadProductos(cantidad);
+    }
+
+    public void setDetalleSubtotal(int subTotal){
+        detalleTransaccion.setSubTotal(subTotal);;
+    }
+
+    public void setDetalleProducto(String codigoProducto){
+        detalleTransaccion.setCodigoProducto(codigoProducto);
     }
 
     public String getCodigo() {
@@ -21,11 +52,11 @@ public class Transaccion {
         this.codigo = codigo;
     }
 
-    public Date getFecha() {
+    public String getFecha() {
         return this.fecha;
     }
 
-    public void setFecha(Date fecha) {
+    public void setFecha(String fecha) {
         this.fecha = fecha;
     }
 
@@ -45,11 +76,11 @@ public class Transaccion {
         this.total = total;
     }
 
-    public short getIva() {
+    public float getIva() {
         return this.iva;
     }
 
-    public void setIva(short iva) {
+    public void setIva(float iva) {
         this.iva = iva;
     }
 }
