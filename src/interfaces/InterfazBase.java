@@ -99,7 +99,9 @@ public class InterfazBase extends javax.swing.JFrame {
     }//GEN-LAST:event_botonProductosActionPerformed
 
     private void botonClientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonClientesActionPerformed
-        // TODO add your handling code here:
+         this.dispose();
+        CrudCliente crudCliente = new CrudCliente();
+        crudCliente.setVisible(true);
     }//GEN-LAST:event_botonClientesActionPerformed
 
     private void botonVentasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonVentasActionPerformed

@@ -3,24 +3,24 @@ package modelo.tipoCliente;
 import java.math.BigInteger;
 
 public class Juridica {
-    private BigInteger nit;
-    private BigInteger numeroIdentificacionTributaria;
+    private String nit;
+    private String numeroIdentificacionTributaria;
 
     public Juridica(){}
 
-    public BigInteger getNit() {
+    public String getNit() {
         return this.nit;
     }
 
-    public void setNit(BigInteger nit) {
+    public void setNit(String nit) {
         this.nit = nit;
     }
 
-    public BigInteger getNumeroIdentificacionTributaria() {
+    public String getNumeroIdentificacionTributaria() {
         return this.numeroIdentificacionTributaria;
     }
 
-    public void setNumeroIdentificacionTributaria(BigInteger numeroIdentificacionTributaria) {
+    public void setNumeroIdentificacionTributaria(String numeroIdentificacionTributaria) {
         this.numeroIdentificacionTributaria = numeroIdentificacionTributaria;
     }
 

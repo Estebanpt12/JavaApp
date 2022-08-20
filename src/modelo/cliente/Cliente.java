@@ -9,12 +9,12 @@ import modelo.tipoCliente.Natural;
 public class Cliente {
     private String nombres;
     private String apellidos;
-    private BigInteger numeroIdentificacion;
+    private String numeroIdentificacion;
     private String direccion;
-    private BigInteger numeroTelefono;
-    private boolean tipoCliente;
-    private Juridica juridica;
-    private Natural natural;
+    private String numeroTelefono;
+    private String tipoCliente;
+    public Juridica juridica;
+    public Natural natural;
     
     public Cliente (){}
 
@@ -35,11 +35,11 @@ public class Cliente {
         this.apellidos = apellidos;
     }
 
-    public BigInteger getNumeroIdentificacion() {
+    public String getNumeroIdentificacion() {
         return this.numeroIdentificacion;
     }
 
-    public void setNumeroIdentificacion(BigInteger numeroIdentificacion) {
+    public void setNumeroIdentificacion(String numeroIdentificacion) {
         this.numeroIdentificacion = numeroIdentificacion;
     }
 
@@ -51,32 +51,28 @@ public class Cliente {
         this.direccion = direccion;
     }
 
-    public BigInteger getNumeroTelefono() {
+    public String getNumeroTelefono() {
         return this.numeroTelefono;
     }
 
-    public void setNumeroTelefono(BigInteger numeroTelefono) {
+    public void setNumeroTelefono(String numeroTelefono) {
         this.numeroTelefono = numeroTelefono;
     }
 
-    public boolean isTipoCliente() {
+    public String getTipoCliente() {
         return this.tipoCliente;
     }
 
-    public boolean getTipoCliente() {
-        return this.tipoCliente;
-    }
-
-    public void setTipoCliente(boolean tipoCliente) {
+    public void setTipoCliente(String tipoCliente) {
         this.tipoCliente = tipoCliente;
     }
 
-    public void setJuridica(BigInteger nit, BigInteger numeroIdentificacionT){
+    public void setJuridica(String nit, String numeroIdentificacionT){
         juridica.setNit(nit);
         juridica.setNumeroIdentificacionTributaria(numeroIdentificacionT);
     }
 
-    public void setNatural(Date fechaNacimiento, String email){
+    public void setNatural(String fechaNacimiento, String email){
         natural.setEmail(email);
         natural.setFechaNacimiento(fechaNacimiento);
     }

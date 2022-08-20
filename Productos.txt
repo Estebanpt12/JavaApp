@@ -1,3 +1,2 @@
-1,1,1,1,1,Envasados,null,null,0.0,25,25.0,Peru
-242,5656,5746,45456,444,Perecederos,1,null,0.0,null,0.0,null
 45645,21312,45645,13212,456,Refrigerados,null,25,25.0,null,0.0,null
+345,,345,343,5,Perecederos,434546,null,0.0,null,0.0,null

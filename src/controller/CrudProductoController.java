@@ -142,14 +142,7 @@ public class CrudProductoController {
         listaProducto.add(producto);
         scanner.close();
     }
-    
-    /*public String getRow(int index){
-        Producto producto = listaProducto.get(index);
-        if(producto.getPerecederos() == null){
-            producto.setPerecederos =
-        }
-    }*/
-    
+  
     public void editProducto(int indexProducto, int campo, String valor){
        Producto producto = listaProducto.get(indexProducto);
        switch(campo){

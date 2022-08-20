@@ -1,1 +1,0 @@
-modelo.transaccion.DetalleTransaccion

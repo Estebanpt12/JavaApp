@@ -1,1 +1,0 @@
-modelo.tipoProducto.Perecederos

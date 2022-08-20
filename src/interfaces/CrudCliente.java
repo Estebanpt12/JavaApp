@@ -4,17 +4,39 @@
  */
 package interfaces;
 
+import controller.CrudClienteController;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author Esteban
  */
 public class CrudCliente extends javax.swing.JFrame {
-
+    DefaultTableModel modelo;
+    CrudClienteController crudClienteController;
+    
     /**
      * Creates new form CrudCliente
      */
     public CrudCliente() {
         initComponents();
+        modelo = new DefaultTableModel();
+        modelo.addColumn("Nombre");
+        modelo.addColumn("Apellido");
+        modelo.addColumn("Identificacion");
+        modelo.addColumn("Direccion");
+        modelo.addColumn("Telefono");
+        modelo.addColumn("Tipo");
+        modelo.addColumn("Email");
+        modelo.addColumn("Fecha de nacimiento");
+        modelo.addColumn("Nit");
+        modelo.addColumn("Identificacion tributaria");
+        this.tabla.setModel(modelo);
+        labelDato1.setText("");
+        textDato1.setEnabled(false);
+        labelDato2.setText("");
+        textDato2.setEnabled(false);
+        crudClienteController = new CrudClienteController();
     }
 
     /**
@@ -29,11 +51,11 @@ public class CrudCliente extends javax.swing.JFrame {
         textTelefono = new javax.swing.JTextField();
         labelTipo = new javax.swing.JLabel();
         labelDato1 = new javax.swing.JLabel();
-        TextDato1 = new javax.swing.JTextField();
+        textDato1 = new javax.swing.JTextField();
         labelDato2 = new javax.swing.JLabel();
         labelCampo = new javax.swing.JLabel();
         botonBorrar = new javax.swing.JButton();
-        dropDownCodigo = new javax.swing.JComboBox<>();
+        dropDownPosicion = new javax.swing.JComboBox<>();
         labelNombre = new javax.swing.JLabel();
         textNombre = new javax.swing.JTextField();
         labelFila = new javax.swing.JLabel();
@@ -76,10 +98,10 @@ public class CrudCliente extends javax.swing.JFrame {
             }
         });
 
-        dropDownCodigo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccionar", "Nombre", "Apellido", "Identificacion", "Direccion", "Telefono", "Tipo", "Email", "Fecha nacimiento", "NIT", "Identificacion tributaria" }));
-        dropDownCodigo.addActionListener(new java.awt.event.ActionListener() {
+        dropDownPosicion.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccionar", "Nombre", "Apellido", "Identificacion", "Direccion", "Telefono", "Tipo", "Email", "Fecha nacimiento", "NIT", "Identificacion tributaria" }));
+        dropDownPosicion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                dropDownCodigoActionPerformed(evt);
+                dropDownPosicionActionPerformed(evt);
             }
         });
 
@@ -205,7 +227,7 @@ public class CrudCliente extends javax.swing.JFrame {
                                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                         .addComponent(textTelefono, javax.swing.GroupLayout.DEFAULT_SIZE, 146, Short.MAX_VALUE)
                                         .addComponent(dropDownTipo, 0, 146, Short.MAX_VALUE)
-                                        .addComponent(TextDato1, javax.swing.GroupLayout.DEFAULT_SIZE, 146, Short.MAX_VALUE)
+                                        .addComponent(textDato1, javax.swing.GroupLayout.DEFAULT_SIZE, 146, Short.MAX_VALUE)
                                         .addComponent(textDato2)))
                                 .addGroup(layout.createSequentialGroup()
                                     .addGap(190, 190, 190)
@@ -225,7 +247,7 @@ public class CrudCliente extends javax.swing.JFrame {
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                         .addComponent(textFilaEliminacion)
-                                        .addComponent(dropDownCodigo, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(dropDownPosicion, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                         .addComponent(textValorEditar))
                                     .addGap(41, 41, 41)))))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
@@ -253,7 +275,7 @@ public class CrudCliente extends javax.swing.JFrame {
                                         .addComponent(labelIdentificacion)
                                         .addComponent(textIdentificacion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addComponent(labelDato1)
-                                        .addComponent(TextDato1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                        .addComponent(textDato1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                 .addGroup(layout.createSequentialGroup()
                                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                         .addComponent(labelTelefono)
@@ -275,7 +297,7 @@ public class CrudCliente extends javax.swing.JFrame {
                             .addComponent(textFilaEliminacion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(23, 23, 23)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(dropDownCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(dropDownPosicion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(labelCampo))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -297,7 +319,12 @@ public class CrudCliente extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void botonBorrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonBorrarActionPerformed
-        // TODO add your handling code here:
+        int fila = tabla.getSelectedRow();
+        if(fila >=0){
+            modelo.removeRow(fila);
+            crudClienteController.deleteCliente(fila);
+        }
+        crudClienteController.writeListaCliente();
     }//GEN-LAST:event_botonBorrarActionPerformed
 
     private void textValorEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textValorEditarActionPerformed
@@ -305,24 +332,131 @@ public class CrudCliente extends javax.swing.JFrame {
     }//GEN-LAST:event_textValorEditarActionPerformed
 
     private void botonVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonVolverActionPerformed
-        // TODO add your handling code here:
+        this.dispose();
+        InterfazBase interfazBase = new InterfazBase();
+        interfazBase.setVisible(true);
     }//GEN-LAST:event_botonVolverActionPerformed
-
+    
+    private boolean verifyDataChanged(){
+        return !(textFilaEliminacion.getText().equals("") && textValorEditar.getText().equals("") 
+                && dropDownPosicion.getSelectedItem()== "Seleccionar");
+    }
+    
     private void botonEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonEditarActionPerformed
-        // TODO add your handling code here:
+        if(verifyDataChanged()){
+            int fila = Integer.parseInt(textFilaEliminacion.getText());
+            int columna = dropDownPosicion.getSelectedIndex();
+            String valor = textValorEditar.getText();
+            if(columna == 6 && ( valor.equals("Natural") || valor.equals("Juridica"))){
+                modelo.setValueAt(valor, fila-1, columna-1);
+                crudClienteController.editCliente(fila-1, columna, valor);
+                crudClienteController.writeListaCliente();
+                if (!(valor.equals("Natural"))){
+                    modelo.setValueAt(null, fila-1, 6);
+                    crudClienteController.editCliente(fila-1, 7, null);
+                    modelo.setValueAt(null, fila-1, 7);
+                    crudClienteController.editCliente(fila-1, 8, null);
+                    crudClienteController.writeListaCliente();
+                }
+                if(!(valor.equals("Juridica"))){
+                    modelo.setValueAt(null, fila-1, 7);
+                    modelo.setValueAt(null, fila-1, 8);
+                    crudClienteController.editCliente(fila-1, 8, null);
+                    crudClienteController.editCliente(fila-1, 9, null);
+                }
+                
+                }else{
+                if((columna == 6 || columna == 7) && modelo.getValueAt(fila-1, 5).equals("Natural")){
+                    modelo.setValueAt(valor, fila-1, columna-1);
+                    crudClienteController.editCliente(fila-1, columna, valor);
+                    crudClienteController.writeListaCliente();
+                }else{
+                    if((columna == 8 || columna == 9) && modelo.getValueAt(fila-1, 5).equals("Juridica")){
+                        modelo.setValueAt(valor, fila-1, columna-1);
+                        crudClienteController.editCliente(fila-1, columna, valor);
+                        crudClienteController.writeListaCliente();
+                    }else{
+                        if(columna>0 && columna<6){
+                            modelo.setValueAt(valor, fila-1, columna-1);
+                            crudClienteController.editCliente(fila-1, columna, valor);
+                            crudClienteController.writeListaCliente();
+                        }
+                    }
+                }
+            }
+        }    
     }//GEN-LAST:event_botonEditarActionPerformed
 
     private void botonAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAgregarActionPerformed
-        // TODO add your handling code here:
+               if(verifyEmpty()){
+            String[] info = new String[10];
+            info[0]=textNombre.getText();
+            info[1]=textApellido.getText();
+            info[2]=textIdentificacion.getText();
+            info[3]=textDireccion.getText();
+            info[4]=textTelefono.getText();
+            String aux = dropDownTipo.getSelectedItem().toString();
+            info[5]= aux;
+            if(aux == "Natural"){
+                info[6] = textDato1.getText();
+                info[7] = textDato2.getText();
+                textDato1.setText("");
+                labelDato1.setText("");
+                textDato1.setEnabled(false);
+                textDato2.setText("");
+                labelDato2.setText("");
+                textDato2.setEnabled(false);
+            }else{
+                if(aux == "Juridica"){
+                    info[8] = textDato1.getText();
+                    info[9] = textDato2.getText();
+                    textDato1.setText("");
+                    textDato2.setText("");
+                    labelDato1.setText("");
+                    textDato1.setEnabled(false);
+                    labelDato2.setText("");
+                    textDato2.setEnabled(false);
+                }
+            }
+            modelo.addRow(info);
+            
+            textNombre.setText("");
+            textApellido.setText("");
+            textIdentificacion.setText("");
+            textDireccion.setText("");
+            textTelefono.setText("");
+            dropDownTipo.setSelectedIndex(0);
+           crudClienteController.addCliente(info);
+           crudClienteController.writeListaCliente();
+        }
     }//GEN-LAST:event_botonAgregarActionPerformed
 
+     private boolean verifyEmpty(){
+        return !(textApellido.getText().equals("") && textNombre.getText().equals("") && textIdentificacion.getText().equals("") 
+                && textDireccion.getText().equals("") && textTelefono.getText().equals("") 
+                && dropDownTipo.getSelectedItem()== "Seleccionar");
+    }
+     
     private void dropDownTipoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dropDownTipoActionPerformed
-        // TODO add your handling code here:
+        String aux = dropDownTipo.getSelectedItem().toString();
+        if(aux == "Natural"){
+            labelDato1.setText("Email:");
+            textDato1.setEnabled(true);
+            labelDato2.setText("Fecha de nacimiento");
+            textDato2.setEnabled(true);
+        }else{
+            if(aux == "Juridica"){
+                labelDato1.setText("Nit:");
+                labelDato2.setText("Identificacion tributaria:");
+                textDato1.setEnabled(true);
+                textDato2.setEnabled(true);
+            }
+        }
     }//GEN-LAST:event_dropDownTipoActionPerformed
 
-    private void dropDownCodigoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dropDownCodigoActionPerformed
+    private void dropDownPosicionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dropDownPosicionActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_dropDownCodigoActionPerformed
+    }//GEN-LAST:event_dropDownPosicionActionPerformed
 
     /**
      * @param args the command line arguments
@@ -360,12 +494,11 @@ public class CrudCliente extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextField TextDato1;
     private javax.swing.JButton botonAgregar;
     private javax.swing.JButton botonBorrar;
     private javax.swing.JButton botonEditar;
     private javax.swing.JButton botonVolver;
-    private javax.swing.JComboBox<String> dropDownCodigo;
+    private javax.swing.JComboBox<String> dropDownPosicion;
     private javax.swing.JComboBox<String> dropDownTipo;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel labelApellido;
@@ -381,6 +514,7 @@ public class CrudCliente extends javax.swing.JFrame {
     private javax.swing.JLabel labelValorEditar;
     private javax.swing.JTable tabla;
     private javax.swing.JTextField textApellido;
+    private javax.swing.JTextField textDato1;
     private javax.swing.JTextField textDato2;
     private javax.swing.JTextField textDireccion;
     private javax.swing.JTextField textFilaEliminacion;
