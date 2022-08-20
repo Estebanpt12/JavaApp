@@ -60,7 +60,7 @@ public class CrudClienteController {
                                     listaCliente.get(i).getNumeroIdentificacion()+","+listaCliente.get(i).getDireccion()+","+
                                     listaCliente.get(i).getNumeroTelefono()+","+listaCliente.get(i).getTipoCliente()+","+
                                     listaCliente.get(i).natural.getEmail()+","+listaCliente.get(i).natural.getFechaNacimiento()+","+
-                                    listaCliente.get(i).juridica.getNit()+","+listaCliente.get(i).juridica.getNumeroIdentificacionTributaria()+",");
+                                    listaCliente.get(i).juridica.getNit()+","+listaCliente.get(i).juridica.getNumeroIdentificacionTributaria());
             }
             printWriter.close();
         } catch (IOException ex) {

@@ -16,7 +16,10 @@ public class Cliente {
     public Juridica juridica;
     public Natural natural;
     
-    public Cliente (){}
+    public Cliente (){
+    	natural = new Natural();
+    	juridica = new Juridica();
+    }
 
 
     public String getNombres() {
