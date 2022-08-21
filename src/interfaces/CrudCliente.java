@@ -37,6 +37,24 @@ public class CrudCliente extends javax.swing.JFrame {
         labelDato2.setText("");
         textDato2.setEnabled(false);
         crudClienteController = new CrudClienteController();
+        String[][] info = crudClienteController.readListaCliente();
+        translateTable(info);
+    }
+    
+    public void translateTable(String[][] info){
+        for(int i = 0; i<info.length;i++){
+            if(!(info[i][5].equals("Natural"))){
+               info[i][6] = null;
+               info[i][7] = null;
+            }
+            if(!(info[i][5].equals("Juridica"))){
+               info[i][8] = null;
+               info[i][9] = null;
+            }
+        }
+        for(int i = 0; i<info.length; i++){
+            modelo.addRow(info[i]);
+        }
     }
 
     /**
@@ -177,7 +195,7 @@ public class CrudCliente extends javax.swing.JFrame {
         labelApellido.setText("Apellido:");
 
         labelIdentificacion.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        labelIdentificacion.setText("Identificacion:");
+        labelIdentificacion.setText("Id:");
 
         labelDireccion.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         labelDireccion.setText("Direccion:");
@@ -339,7 +357,7 @@ public class CrudCliente extends javax.swing.JFrame {
     
     private boolean verifyDataChanged(){
         return !(textFilaEliminacion.getText().equals("") && textValorEditar.getText().equals("") 
-                && dropDownPosicion.getSelectedItem()== "Seleccionar");
+                && dropDownPosicion.getSelectedItem().equals("Seleccionar"));
     }
     
     private void botonEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonEditarActionPerformed
@@ -353,25 +371,26 @@ public class CrudCliente extends javax.swing.JFrame {
                 crudClienteController.writeListaCliente();
                 if (!(valor.equals("Natural"))){
                     modelo.setValueAt(null, fila-1, 6);
-                    crudClienteController.editCliente(fila-1, 7, null);
                     modelo.setValueAt(null, fila-1, 7);
+                    crudClienteController.editCliente(fila-1, 7, null);
                     crudClienteController.editCliente(fila-1, 8, null);
                     crudClienteController.writeListaCliente();
                 }
                 if(!(valor.equals("Juridica"))){
-                    modelo.setValueAt(null, fila-1, 7);
                     modelo.setValueAt(null, fila-1, 8);
-                    crudClienteController.editCliente(fila-1, 8, null);
+                    modelo.setValueAt(null, fila-1, 9);
                     crudClienteController.editCliente(fila-1, 9, null);
+                    crudClienteController.editCliente(fila-1, 10, null);
+                    crudClienteController.writeListaCliente();
                 }
                 
                 }else{
-                if((columna == 6 || columna == 7) && modelo.getValueAt(fila-1, 5).equals("Natural")){
+                if((columna == 7 || columna == 8) && modelo.getValueAt(fila-1, 5).equals("Natural")){
                     modelo.setValueAt(valor, fila-1, columna-1);
                     crudClienteController.editCliente(fila-1, columna, valor);
                     crudClienteController.writeListaCliente();
                 }else{
-                    if((columna == 8 || columna == 9) && modelo.getValueAt(fila-1, 5).equals("Juridica")){
+                    if((columna == 9 || columna == 10) && modelo.getValueAt(fila-1, 5).equals("Juridica")){
                         modelo.setValueAt(valor, fila-1, columna-1);
                         crudClienteController.editCliente(fila-1, columna, valor);
                         crudClienteController.writeListaCliente();
@@ -434,7 +453,7 @@ public class CrudCliente extends javax.swing.JFrame {
      private boolean verifyEmpty(){
         return !(textApellido.getText().equals("") && textNombre.getText().equals("") && textIdentificacion.getText().equals("") 
                 && textDireccion.getText().equals("") && textTelefono.getText().equals("") 
-                && dropDownTipo.getSelectedItem()== "Seleccionar");
+                && dropDownTipo.getSelectedItem().equals("Seleccionar"));
     }
      
     private void dropDownTipoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dropDownTipoActionPerformed

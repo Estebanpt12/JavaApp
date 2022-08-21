@@ -82,7 +82,7 @@ public class CrudProductoController {
     public void restarProducto(String codigo, int cantidad){
         readListaProducto();
         for(int i = 0; i<listaProducto.size(); i++){
-            if(listaProducto.get(i).getCodigo().equals(codigo)){
+            if(listaProducto.get(i).getCodigo().equals(codigo) && listaProducto.get(i).getCantidadExistencia() - cantidad >= 0){
                 listaProducto.get(i).setCantidadExistencia(listaProducto.get(i).getCantidadExistencia() - cantidad);
             }
         }

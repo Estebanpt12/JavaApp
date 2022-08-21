@@ -369,7 +369,7 @@ public class CrudProducto extends javax.swing.JFrame {
     private boolean verifyEmpty(){
         return !(textCodigo.getText().equals("") && textNombre.getText().equals("") && textDescripcion.getText().equals("") 
                 && textValor.getText().equals("") && textCantidad.getText().equals("") 
-                && dropDownTipo.getSelectedItem()== "Seleccionar");
+                && dropDownTipo.getSelectedItem().equals("Seleccionar"));
     }
     
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -465,7 +465,7 @@ public class CrudProducto extends javax.swing.JFrame {
 
     private boolean verifyDataChanged(){
         return !(textFilaEliminacion.getText().equals("") && textValorEditar.getText().equals("") 
-                && dropDownCampo.getSelectedItem()== "Seleccionar");
+                && dropDownCampo.getSelectedItem().equals("Seleccionar"));
     }
     
     private void botonEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonEditarActionPerformed

@@ -1,2 +1,3 @@
-45645,21312,45645,13212,456,Refrigerados,null,25,25.0,null,0.0,null
-345,,345,343,5,Perecederos,434546,null,0.0,null,0.0,null
+12,12,12,12,10,Perecederos,12,null,0.0,null,0.0,null
+P156,Helado,Fresa,5000,50,Perecederos,Perecederos12,null,0.0,null,0.0,null
+P487,Atun,Lonchas,3000,50,Envasados,null,null,0.0,12,12.0,Peru

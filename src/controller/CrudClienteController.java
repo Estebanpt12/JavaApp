@@ -43,7 +43,7 @@ public class CrudClienteController {
     }
 
     public void writeListaCliente() {
-       File file = new File("Cliente.txt");
+       File file = new File("Clientes.txt");
         try {
             PrintWriter writer; 
             writer = new PrintWriter(file);
