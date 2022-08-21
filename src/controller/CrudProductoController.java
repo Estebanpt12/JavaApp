@@ -55,14 +55,6 @@ public class CrudProductoController {
     public void writeListaProducto(){
         File file = new File("Productos.txt");
         try {
-            PrintWriter writer; 
-            writer = new PrintWriter(file);
-            writer.print(""); 
-            writer.close(); 
-        } catch (FileNotFoundException ex) {
-            Logger.getLogger(CrudProductoController.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        try {
             FileWriter fileWriter = new FileWriter(file);
             PrintWriter printWriter = new PrintWriter(fileWriter);
             for(int i=0; i<listaProducto.size();i++){

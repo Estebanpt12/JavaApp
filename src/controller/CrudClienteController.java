@@ -45,14 +45,6 @@ public class CrudClienteController {
     public void writeListaCliente() {
        File file = new File("Clientes.txt");
         try {
-            PrintWriter writer; 
-            writer = new PrintWriter(file);
-            writer.print(""); 
-            writer.close(); 
-        } catch (FileNotFoundException ex) {
-            Logger.getLogger(CrudClienteController.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        try {
             FileWriter fileWriter = new FileWriter(file);
             PrintWriter printWriter = new PrintWriter(fileWriter);
             for(int i=0; i<listaCliente.size();i++){

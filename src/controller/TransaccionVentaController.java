@@ -75,14 +75,6 @@ public class TransaccionVentaController {
     public void writelistaTransacciones(){
         File file = new File("Ventas.txt");
         try {
-            PrintWriter writer; 
-            writer = new PrintWriter(file);
-            writer.print(""); 
-            writer.close(); 
-        } catch (FileNotFoundException ex) {
-            ex.printStackTrace();
-        }
-        try {
             FileWriter fileWriter = new FileWriter(file);
             PrintWriter printWriter = new PrintWriter(fileWriter);
             for(int i=0; i<listaTransacciones.size();i++){
